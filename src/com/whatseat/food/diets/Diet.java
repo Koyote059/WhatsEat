@@ -8,50 +8,22 @@ import java.util.*;
 
 public class Diet implements Food {
 
-    private final Map<Integer,Map<DayOfWeek,MealPlan>> weekDayMealPlanMap;
+    private final List<WeeklyMealPlan> weeklyMealPlans;
 
-    Diet(Map<Integer,Map<DayOfWeek,MealPlan>> weekDayMealPlanMap){
-        this.weekDayMealPlanMap = weekDayMealPlanMap;
+    Diet(List<WeeklyMealPlan> weeklyMealPlans){
+        this.weeklyMealPlans = weeklyMealPlans;
     }
 
-    public MealPlan getMealPlan(int week, DayOfWeek dayOfWeek){
-        return Objects.requireNonNull(weekDayMealPlanMap.get(week)).get(dayOfWeek);
-    }
-
-    @Override
-    public FoodNutrients getFoodNutrients() { // FoodNutrientsPerWeek
-        float totalFats = 0, totalCarbs = 0, totalProt = 0;
-        for(Map.Entry<Integer, Map<DayOfWeek, MealPlan>> weekMapEntrySet: weekDayMealPlanMap.entrySet()){
-            for(Map.Entry<DayOfWeek, MealPlan> dayOfWeekMealPlanEntrySet: weekMapEntrySet.getValue().entrySet()){
-                MealPlan mealPlan = dayOfWeekMealPlanEntrySet.getValue();
-                FoodNutrients mealPlanNutrients = mealPlan.getFoodNutrients();
-                totalFats+=mealPlanNutrients.getFats();
-                totalCarbs+=mealPlanNutrients.getCarbs();
-                totalProt+=mealPlanNutrients.getProt();
-            }
-        }
-        int weeksNumber = weekDayMealPlanMap.size();
-        return new FoodNutrients(totalFats/weeksNumber,totalCarbs/weeksNumber,totalProt/weeksNumber);
-    }
-
-    @Override
-    public int getPrice() { // Medium price per day
-        int totalPrice = 0;
-        List<Food> children = getChildren();
-        for(Food child: children){
-            totalPrice+=child.getPrice();
-        }
-        return totalPrice/children.size();
+    public WeeklyMealPlan getWeeklyMealPlan(int week){
+        return weeklyMealPlans.get(week);
     }
 
     @Override
     public List<Food> getChildren() {
-        Set<Food> children = new HashSet<>();
-        for(Map.Entry<Integer, Map<DayOfWeek, MealPlan>> entrySet : weekDayMealPlanMap.entrySet()){
-            for(Map.Entry<DayOfWeek, MealPlan> secondEntrySet: entrySet.getValue().entrySet()){
-                children.add(secondEntrySet.getValue());
-            }
+        List<Food> children = new ArrayList<>();
+        for(WeeklyMealPlan weeklyMealPlan: weeklyMealPlans){
+            children.addAll(weeklyMealPlan.getChildren());
         }
-        return new ArrayList<>(children);
+        return children;
     }
 }

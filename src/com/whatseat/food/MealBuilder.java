@@ -30,6 +30,6 @@ public class MealBuilder {
     }
 
     public Meal build(){
-        return new Meal(name,ingredients,pic);
+        return new Meal(name,ingredients);
     }
 }

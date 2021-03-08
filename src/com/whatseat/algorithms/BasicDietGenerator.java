@@ -4,6 +4,7 @@ import com.whatseat.food.Meal;
 import com.whatseat.food.diets.Diet;
 import com.whatseat.food.diets.DietBuilder;
 import com.whatseat.food.diets.MealPlan;
+import com.whatseat.food.diets.WeeklyMealPlan;
 import com.whatseat.food.utils.FoodNutrients;
 import com.whatseat.food.utils.FoodType;
 
@@ -55,11 +56,10 @@ public class BasicDietGenerator implements DietGenerator {
                     mealRequestedCarbs = dailyNutrientsGoal.getCarbs() / mealsNumber,
                     mealRequestedProt = dailyNutrientsGoal.getProt() / mealsNumber;
             for (int i = 0; i < weekCount; i++) {
-                Map<DayOfWeek, MealPlan> weeklyMealPlan = new HashMap<>();
+                WeeklyMealPlan weeklyMealPlan = new WeeklyMealPlan();
                 List<Meal> mealList = new ArrayList<>(meals);
                 for (int j = 0; j < 7; j++) {
                     DayOfWeek dayOfWeek = DayOfWeek.of(j);
-                    MealPlan mealPlan = new MealPlan();
                     for (int k = 0; k < mealsNumber; k++) {
                         Meal preferredMeal = mealList.get(0);
                         for (Meal meal : mealList) {
@@ -77,9 +77,8 @@ public class BasicDietGenerator implements DietGenerator {
                             if (mealNutrientsGap < preferredMealNutrientsGap) preferredMeal = meal;
                         }
                         mealList.remove(preferredMeal);
-                        mealPlan.addMeal(preferredMeal);
+                        weeklyMealPlan.addMeal(dayOfWeek,preferredMeal);
                     }
-                    weeklyMealPlan.put(dayOfWeek, mealPlan);
                     dietBuilder.addWeeklyPlan(weeklyMealPlan);
                 }
             }

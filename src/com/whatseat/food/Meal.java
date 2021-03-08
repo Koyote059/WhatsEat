@@ -11,20 +11,14 @@ public class Meal implements Food {
 
     protected final Map<Ingredient, Integer> ingredientsQuantityMap;
     protected final String name;
-    protected final Image pic;
 
-    protected Meal(String name, Map<Ingredient, Integer> ingredients, Image pic){
+    protected Meal(String name, Map<Ingredient, Integer> ingredients){
         this.name = name;
-        this.pic = pic;
         this.ingredientsQuantityMap = ingredients;
     }
 
     public String getName(){
         return this.name;
-    }
-
-    public Image getPic(){
-        return this.pic;
     }
 
     @Override

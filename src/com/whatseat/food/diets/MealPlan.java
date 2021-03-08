@@ -8,7 +8,7 @@ import java.util.List;
 
 public class MealPlan implements Food {
 
-    private final List<Meal> meals = new ArrayList<>();
+    protected final List<Meal> meals = new ArrayList<>();
 
     public void addMeal(Meal meal){
         this.meals.add(meal);

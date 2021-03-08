@@ -1,20 +1,19 @@
 package com.whatseat.food.diets;
 
 
-import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class DietBuilder {
 
-    private final Map<Integer, Map<DayOfWeek,MealPlan>> weekDayMealPlanMap = new HashMap<>();
+    private final List<WeeklyMealPlan> weekDayMealPlans = new ArrayList<>();
 
-    public void addWeeklyPlan(Map<DayOfWeek, MealPlan> weekMealPlanMap){
-        int missingWeek = weekDayMealPlanMap.size();
-        this.weekDayMealPlanMap.put(missingWeek,weekMealPlanMap);
+    public void addWeeklyPlan(WeeklyMealPlan weekMealPlan){
+        this.weekDayMealPlans.add(weekMealPlan);
     }
 
     public Diet build(){
-        return new Diet(weekDayMealPlanMap);
+        return new Diet(weekDayMealPlans);
     }
 }
