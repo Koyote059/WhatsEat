@@ -10,6 +10,4 @@ public abstract class DatabaseTable {
         this.database = database;
     }
 
-    public abstract void create();
-
 }

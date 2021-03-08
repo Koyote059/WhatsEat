@@ -1,17 +1,22 @@
 package com.whatseat.food.diets;
 
 import com.whatseat.food.Food;
-import com.whatseat.food.utils.FoodNutrients;
 
-import java.time.DayOfWeek;
 import java.util.*;
 
 public class Diet implements Food {
 
     private final List<WeeklyMealPlan> weeklyMealPlans;
+    private final UUID uuid;
 
     Diet(List<WeeklyMealPlan> weeklyMealPlans){
         this.weeklyMealPlans = weeklyMealPlans;
+        this.uuid = UUID.randomUUID();
+    }
+
+    Diet(List<WeeklyMealPlan> weeklyMealPlans, UUID uuid){
+        this.weeklyMealPlans = weeklyMealPlans;
+        this.uuid = uuid;
     }
 
     public WeeklyMealPlan getWeeklyMealPlan(int week){
@@ -25,5 +30,9 @@ public class Diet implements Food {
             children.addAll(weeklyMealPlan.getChildren());
         }
         return children;
+    }
+
+    public UUID getUUID() {
+        return uuid;
     }
 }

@@ -1,13 +1,13 @@
-package com.whatseat.food.utils;
+package com.whatseat.food;
 
 public class FoodNutrients {
 
-    private final float fats, carbs, prot;
+    private final float fats, carbs, prots;
 
-    public FoodNutrients(float fats, float carbs, float prot){
+    FoodNutrients(float fats, float carbs, float prots){
         this.fats = fats;
         this.carbs = carbs;
-        this.prot = prot;
+        this.prots = prots;
     }
 
 
@@ -19,11 +19,11 @@ public class FoodNutrients {
         return carbs;
     }
 
-    public float getProt() {
-        return prot;
+    public float getProts() {
+        return prots;
     }
 
     public float getTotalCalories(){
-        return (prot+carbs)*4+fats*9;
+        return (prots+carbs)*4+fats*9;
     }
 }

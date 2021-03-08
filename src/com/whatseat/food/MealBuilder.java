@@ -4,12 +4,13 @@ package com.whatseat.food;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class MealBuilder {
 
     protected final Map<Ingredient,Integer> ingredients = new HashMap<>();
     protected String name;
-    protected Image pic = null;
+    protected UUID uuid = UUID.randomUUID();
 
     public MealBuilder(String name){
         this.name = name;
@@ -19,17 +20,19 @@ public class MealBuilder {
         this.name = name;
     }
 
-    public void setPic(Image pic){
-        this.pic = pic;
+    public void addIngredient(Ingredient ingredient, Integer quantity){
+        this.ingredients.put(ingredient,quantity);
     }
-
-    public void addIngredient(Ingredient ingredient, Integer quantity){ this.ingredients.put(ingredient,quantity); }
 
     public void removeIngredient(Ingredient ingredient){
         this.ingredients.remove(ingredient);
     }
 
+    public void setUUID(UUID uuid){
+        this.uuid = uuid;
+    }
+
     public Meal build(){
-        return new Meal(name,ingredients);
+        return new Meal(name,ingredients,uuid);
     }
 }

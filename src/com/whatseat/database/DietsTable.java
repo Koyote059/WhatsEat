@@ -12,7 +12,7 @@ public class DietsTable extends DatabaseTable {
 
     @Override
     public void create() {
-
+        // Todo -> Create table(s) SQL statement
     }
 
     public void addDiet(Diet diet){

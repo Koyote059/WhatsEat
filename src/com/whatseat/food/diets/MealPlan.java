@@ -5,6 +5,7 @@ import com.whatseat.food.Meal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class MealPlan implements Food {
 
@@ -26,4 +27,5 @@ public class MealPlan implements Food {
     public List<Food> getChildren() {
         return new ArrayList<>(meals);
     }
+
 }

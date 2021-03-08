@@ -1,20 +1,20 @@
 package com.whatseat.food;
 
-import com.whatseat.food.utils.FoodNutrients;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class Meal implements Food {
 
     protected final Map<Ingredient, Integer> ingredientsQuantityMap;
     protected final String name;
+    protected final UUID uuid;
 
-    protected Meal(String name, Map<Ingredient, Integer> ingredients){
+    Meal(String name, Map<Ingredient, Integer> ingredients, UUID uuid){
         this.name = name;
         this.ingredientsQuantityMap = ingredients;
+        this.uuid = uuid;
     }
 
     public String getName(){
@@ -38,7 +38,7 @@ public class Meal implements Food {
             FoodNutrients foodNutrients = foodEntrySet.getKey().getFoodNutrients();
             int grams = foodEntrySet.getValue();
             carbs+=foodNutrients.getCarbs() * grams;
-            prot+=foodNutrients.getProt() * grams;
+            prot+=foodNutrients.getProts() * grams;
             fats+=foodNutrients.getFats() * grams;
 
         }
@@ -52,5 +52,13 @@ public class Meal implements Food {
     @Override
     public List<Food> getChildren() {
         return new ArrayList<>(ingredientsQuantityMap.keySet());
+    }
+
+    public UUID getUUID() {
+        return uuid;
+    }
+
+    public int getIngredientQuantity(Ingredient ingredient) {
+        return this.ingredientsQuantityMap.get(ingredient);
     }
 }

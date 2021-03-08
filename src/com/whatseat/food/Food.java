@@ -1,11 +1,11 @@
 package com.whatseat.food;
-import com.whatseat.food.utils.Allergens;
-import com.whatseat.food.utils.FoodNutrients;
+import com.whatseat.food.utils.Allergen;
 import com.whatseat.food.utils.FoodType;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 public interface Food {
 
@@ -30,15 +30,15 @@ public interface Food {
             FoodNutrients childNutrients = child.getFoodNutrients();
             fats+=childNutrients.getFats();
             carbs+=childNutrients.getCarbs();
-            prot+=childNutrients.getProt();
+            prot+=childNutrients.getProts();
         }
         return new FoodNutrients(fats,carbs,prot);
     }
 
-    default Set<Allergens> getAllergens(){
-        Set<Allergens> allergens = new HashSet<>();
+    default Set<Allergen> getAllergens(){
+        Set<Allergen> allergens = new HashSet<>();
         for(Food child: getChildren()){
-            Set<Allergens> childAllergens = child.getAllergens();
+            Set<Allergen> childAllergens = child.getAllergens();
             allergens.addAll(childAllergens);
         }
         return allergens;
@@ -52,4 +52,5 @@ public interface Food {
         return price;
     }
     List<Food> getChildren();
+
 }

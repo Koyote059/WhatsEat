@@ -4,10 +4,7 @@ import com.whatseat.food.Food;
 import com.whatseat.food.Meal;
 
 import java.time.DayOfWeek;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WeeklyMealPlan implements Food {
 
@@ -32,4 +29,5 @@ public class WeeklyMealPlan implements Food {
         }
         return children;
     }
+
 }

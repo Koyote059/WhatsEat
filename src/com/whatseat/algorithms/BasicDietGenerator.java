@@ -3,9 +3,8 @@ package com.whatseat.algorithms;
 import com.whatseat.food.Meal;
 import com.whatseat.food.diets.Diet;
 import com.whatseat.food.diets.DietBuilder;
-import com.whatseat.food.diets.MealPlan;
 import com.whatseat.food.diets.WeeklyMealPlan;
-import com.whatseat.food.utils.FoodNutrients;
+import com.whatseat.food.FoodNutrients;
 import com.whatseat.food.utils.FoodType;
 
 import java.time.DayOfWeek;
@@ -54,7 +53,7 @@ public class BasicDietGenerator implements DietGenerator {
             DietBuilder dietBuilder = new DietBuilder();
             float mealRequestedFats = dailyNutrientsGoal.getFats() / mealsNumber,
                     mealRequestedCarbs = dailyNutrientsGoal.getCarbs() / mealsNumber,
-                    mealRequestedProt = dailyNutrientsGoal.getProt() / mealsNumber;
+                    mealRequestedProt = dailyNutrientsGoal.getProts() / mealsNumber;
             for (int i = 0; i < weekCount; i++) {
                 WeeklyMealPlan weeklyMealPlan = new WeeklyMealPlan();
                 List<Meal> mealList = new ArrayList<>(meals);
@@ -68,11 +67,11 @@ public class BasicDietGenerator implements DietGenerator {
 
                             float preferredMealNutrientsGap = (Math.abs(preferredMealNutrients.getFats() - mealRequestedFats) +
                                     Math.abs(preferredMealNutrients.getCarbs() - mealRequestedCarbs) +
-                                    Math.abs(preferredMealNutrients.getProt() - mealRequestedProt)) / 3;
+                                    Math.abs(preferredMealNutrients.getProts() - mealRequestedProt)) / 3;
 
                             float mealNutrientsGap = (Math.abs(mealNutrients.getFats() - mealRequestedFats) +
                                     Math.abs(mealNutrients.getCarbs() - mealRequestedCarbs) +
-                                    Math.abs(mealNutrients.getProt() - mealRequestedProt)) / 3;
+                                    Math.abs(mealNutrients.getProts() - mealRequestedProt)) / 3;
 
                             if (mealNutrientsGap < preferredMealNutrientsGap) preferredMeal = meal;
                         }

@@ -1,13 +1,13 @@
 package com.whatseat.food;
 
-import com.whatseat.food.utils.Allergens;
-import com.whatseat.food.utils.FoodNutrients;
+import com.whatseat.food.utils.Allergen;
 import com.whatseat.food.utils.FoodType;
 import com.whatseat.food.utils.QuantityType;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 public class Ingredient implements Food {
 
@@ -17,17 +17,20 @@ public class Ingredient implements Food {
     private final QuantityType quantityType;
     private final FoodNutrients nutrientsPerHundredGrams;
     private final FoodType foodType;
-    private final Set<Allergens> allergens;
+    private final Set<Allergen> allergens;
+    private final UUID uuid;
 
-    public Ingredient(String name, int pricePerHundredGrams, QuantityType quantityType,
-                      FoodNutrients nutrientsPerHundredGrams, FoodType foodType, Set<Allergens> allergens){
+    protected Ingredient(String name, int pricePerHundredGrams, QuantityType quantityType,
+                         FoodNutrients nutrientsPerHundredGrams, FoodType foodType, Set<Allergen> allergens, UUID uuid){
         this.name = name;
         this.price = pricePerHundredGrams;
         this.quantityType = quantityType;
         this.nutrientsPerHundredGrams = nutrientsPerHundredGrams;
         this.foodType = foodType;
         this.allergens = allergens;
+        this.uuid = uuid;
     }
+
 
     public QuantityType getQuantityType(){
         return quantityType;
@@ -62,8 +65,11 @@ public class Ingredient implements Food {
     }
 
     @Override
-    public Set<Allergens> getAllergens() {
+    public Set<Allergen> getAllergens() {
         return allergens;
     }
 
+    public UUID getUUID() {
+        return this.uuid;
+    }
 }
