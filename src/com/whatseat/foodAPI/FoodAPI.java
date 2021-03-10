@@ -14,7 +14,6 @@ public class FoodAPI {
     private final static String apiId = "f7810269";
     private final static String apiKey = "025dbfc1650e47e090dbc9af00382e7a";
     private final static String getLink = "https://api.edamam.com/api/food-database/v2/parser?app_id="+apiId+"&app_key="+apiKey+"&category=generic-foods&nutrition-type=logging";
-    private final String postLink = "https://api.edamam.com/api/food-database/v2/nutrients?app_id="+apiId+"&app_key="+apiKey;
 
     public static JSONObject getFoodByName(String name) {
         String response = null;
