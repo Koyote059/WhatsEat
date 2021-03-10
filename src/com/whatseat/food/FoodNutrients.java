@@ -4,7 +4,7 @@ public class FoodNutrients {
 
     private final float fats, carbs, prots;
 
-    FoodNutrients(float fats, float carbs, float prots){
+    public FoodNutrients(float fats, float carbs, float prots){
         this.fats = fats;
         this.carbs = carbs;
         this.prots = prots;
