@@ -9,10 +9,6 @@ public class Diet implements Food {
     private final List<WeeklyMealPlan> weeklyMealPlans;
     private final UUID uuid;
 
-    Diet(List<WeeklyMealPlan> weeklyMealPlans){
-        this.weeklyMealPlans = weeklyMealPlans;
-        this.uuid = UUID.randomUUID();
-    }
 
     Diet(List<WeeklyMealPlan> weeklyMealPlans, UUID uuid){
         this.weeklyMealPlans = weeklyMealPlans;
@@ -21,6 +17,10 @@ public class Diet implements Food {
 
     public WeeklyMealPlan getWeeklyMealPlan(int week){
         return weeklyMealPlans.get(week);
+    }
+
+    public int getWeeksNumber(){
+        return weeklyMealPlans.size();
     }
 
     @Override

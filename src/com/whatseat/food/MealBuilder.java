@@ -1,14 +1,13 @@
 package com.whatseat.food;
 
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 public class MealBuilder {
 
-    protected final Map<Ingredient,Integer> ingredients = new HashMap<>();
+    protected final Map<Ingredient,Float> ingredients = new HashMap<>();
     protected String name;
     protected UUID uuid = UUID.randomUUID();
 
@@ -20,7 +19,7 @@ public class MealBuilder {
         this.name = name;
     }
 
-    public void addIngredient(Ingredient ingredient, Integer quantity){
+    public void addIngredient(Ingredient ingredient, Float quantity){
         this.ingredients.put(ingredient,quantity);
     }
 

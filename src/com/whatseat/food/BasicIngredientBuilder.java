@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-public class IngredientBuilder {
+public class BasicIngredientBuilder {
 
     private final String name;
     private final Set<Allergen> allergens = new HashSet<>();
@@ -19,7 +19,7 @@ public class IngredientBuilder {
     private FoodType foodType = FoodType.OMNIVOROUS;
     private UUID uuid = UUID.randomUUID();
 
-    public IngredientBuilder(String name){
+    public BasicIngredientBuilder(String name){
         this.name = name;
     }
 
@@ -48,7 +48,7 @@ public class IngredientBuilder {
     }
 
 
-    public Ingredient build(){
-        return new Ingredient(name,price,quantityType,nutrientsPerHundredGrams,foodType,allergens,uuid);
+    public BasicIngredient build(){
+        return new BasicIngredient(name,price,quantityType,nutrientsPerHundredGrams,foodType,allergens,uuid);
     }
 }

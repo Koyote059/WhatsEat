@@ -1,5 +1,9 @@
 package com.whatseat.database;
 
+import javax.sql.rowset.CachedRowSet;
+import javax.sql.rowset.RowSetFactory;
+import javax.sql.rowset.RowSetProvider;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,11 +19,17 @@ public class WhatsEatDatabase {
     /* ---------------------------------------------------------------------------------------------------- */
 
     protected final String name;
+    protected String url;
     private final Map<DatabaseTableType,DatabaseTable> tables = new HashMap<>();
 
     public WhatsEatDatabase(String name) {
         // Todo -> Create database SQL statement
         this.name = name;
+        url = name;
+    }
+
+    public void setUrl(String url){
+
     }
 
     public DatabaseTable getTable(DatabaseTableType tableType){
@@ -39,6 +49,31 @@ public class WhatsEatDatabase {
             default -> {
                 return null;
             }
+        }
+    }
+
+    public void executeQueries(String[] queries) {
+        try (Connection connection = DriverManager.getConnection(url)) {
+            Statement statement = connection.createStatement();
+            for(String query: queries){
+                statement.execute(query);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    CachedRowSet executeQueryWithResult(String query){  // Todo wrap Exception
+        try (Connection connection = DriverManager.getConnection(url)) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            RowSetFactory factory = RowSetProvider.newFactory();
+            CachedRowSet cachedRowSet = factory.createCachedRowSet();
+            cachedRowSet.populate(resultSet);
+            return cachedRowSet;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
         }
     }
 

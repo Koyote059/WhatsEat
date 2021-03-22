@@ -5,7 +5,6 @@ import com.whatseat.food.utils.FoodType;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 public interface Food {
 
